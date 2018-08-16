@@ -11,8 +11,13 @@ for (let semana = 1; semana <= 53; semana++) {
         arrEquipamentos[cEqp].usoTotal += arrEquipamentos[cEqp].usoSemanal;
         arrEquipamentos[cEqp].proxLL += arrEquipamentos[cEqp].usoSemanal;
         arrEquipamentos[cEqp].proxLLR += arrEquipamentos[cEqp].usoSemanal;
-        if (arrEquipamentos[cEqp].usoTotal >= 250) {
-            console.log('o equipamento ' + arrEquipamentos[cEqp] + ' entrou para lavagem e lubrificação')
+        if (arrEquipamentos[cEqp].proxLL >= 250) {
+            console.log('o equipamento ' + arrEquipamentos[cEqp].nome + ' entrou para lavagem e lubrificação');
+            arrEquipamentos[cEqp].proxLL = 0;
+        }
+        if (arrEquipamentos[cEqp].proxLLR >= 500) {
+            console.log('o equipamento ' + arrEquipamentos[cEqp].nome + ' entrou para lavagem e lubrificação e Revisao');
+            arrEquipamentos[cEqp].proxLLR = 0;
         }
     }
 }
