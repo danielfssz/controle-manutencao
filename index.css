@@ -1,0 +1,32 @@
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;   
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+
+thead tr th
+{
+  position:sticky;
+  top:0px;
+}
+
+th:first-child, td:first-child
+{
+  position:sticky;
+  left:0px;
+}
+ td:first-child
+ {
+  background-color:black;
+ }
+
+ #tblManutencao{
+  max-width: 50%;
+ }
