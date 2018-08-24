@@ -17,13 +17,15 @@ var arrEquipamentos = [
     { id: 16, nome: 'EPP16', usoSemanal: 35, usoTotal: 0 },
     { id: 17, nome: 'RS1', usoSemanal: 50, usoTotal: 0 }
 ];
+var meses = ["Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Septembro", "Outubro", "Novembro", "Dezembro"];
 
-$("#tblManutencao thead tr").append('<th scope="col">Equipamento</th>');
+$("#topo").append('<th scope="col"></th>');
+$("#baixo").append('<th scope="col">Equipamento</th>');
 
 for (let mes = 1; mes <= 12; mes++) {
-    $("#tblCabecalho thead tr").append('<th scope="col">Equipamento</th>');
+    $("#topo").append('<th colspan="4" scope="col">' + meses[mes - 1] + '</th>');
     for (let sem = 1; sem <= 4; sem++) {
-        $("#tblManutencao thead tr").append('<th scope="col" style="width: 20px;">' + sem + '</th>');
+        $("#baixo").append('<th scope="col" style="width: 20px;">' + sem + '</th>');
     }
 }
 
@@ -32,22 +34,30 @@ for (let eqp = 0; eqp < arrEquipamentos.length; eqp++) {
 
     var ll = 250;
     var llr = 500;
-    for (let semana = 1; semana <= 53; semana++) {
-        var add = true;
-        arrEquipamentos[eqp].usoTotal += arrEquipamentos[eqp].usoSemanal;
 
-        if (arrEquipamentos[eqp].usoTotal >= ll && !(arrEquipamentos[eqp].usoTotal >= llr)) {
-            $("#eqp" + arrEquipamentos[eqp].id).append('<td> <i class="fas fa-tint"></i> </td>');
-            ll += 250;
-            add = false;
-        } else if (arrEquipamentos[eqp].usoTotal >= llr) {
-            $("#eqp" + arrEquipamentos[eqp].id).append('<td> <i class="fas fa-oil-can"></i></td>');
-            ll += 250;
-            llr += 500;
-            add = false;
+    for (let mes = 1; mes <= 12; mes++) {
+        for (let sem = 1; sem <= 4; sem++) {
+            var add = true;
+            arrEquipamentos[eqp].usoTotal += arrEquipamentos[eqp].usoSemanal;
+
+            if (arrEquipamentos[eqp].usoTotal >= ll && !(arrEquipamentos[eqp].usoTotal >= llr)) {
+                $("#eqp" + arrEquipamentos[eqp].id).append('<td> <i class="fas fa-tint"></i> </td>');
+                ll += 250;
+                add = false;
+            } else if (arrEquipamentos[eqp].usoTotal >= llr) {
+                $("#eqp" + arrEquipamentos[eqp].id).append('<td> <i class="fas fa-oil-can"></i></td>');
+                ll += 250;
+                llr += 500;
+                add = false;
+            }
+            if (add) {
+                $("#eqp" + arrEquipamentos[eqp].id).append('<td></td>');
+            }
         }
-        if (add) {
-            $("#eqp" + arrEquipamentos[eqp].id).append('<td></td>');
-        }
+    }
+
+
+    for (let semana = 1; semana <= 53; semana++) {
+
     }
 }
