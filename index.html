@@ -4,20 +4,48 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>
-
-    </title>
+    <title>Cronograma de Manutenção</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
+    <!-- <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        thead tr th {
+            position: sticky;
+            top: 0px;
+        }
+
+        th:first-child,
+        td:first-child {
+            position: sticky;
+            left: 0px;
+        }
+
+        td:first-child {
+            background-color: black;
+        }
+
+        #tblManutencao {
+            max-width: 50%;
+        }
+    </style> -->
 </head>
 
 <body>
-
-    <div class="row"></div>
     <table class="table table-striped table-bordered" id="tblManutencao">
         <thead class="thead-dark">
             <tr></tr>
@@ -35,6 +63,63 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="index.js"></script>
+    <!-- <script>
+        var arrEquipamentos = [
+            { id: 1, nome: 'EPP1', usoSemanal: 120, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 2, nome: 'EPP2', usoSemanal: 90, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 3, nome: 'EPP3', usoSemanal: 95, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 4, nome: 'EPP4', usoSemanal: 105, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 5, nome: 'EPP5', usoSemanal: 25, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 6, nome: 'EPP6', usoSemanal: 30, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 7, nome: 'EPP7', usoSemanal: 80, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 8, nome: 'EPP8', usoSemanal: 75, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 9, nome: 'EPP9', usoSemanal: 60, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 10, nome: 'EPP10', usoSemanal: 65, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 11, nome: 'EPP11', usoSemanal: 80, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 12, nome: 'EPP12', usoSemanal: 20, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 13, nome: 'EPP13', usoSemanal: 50, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 14, nome: 'EPP14', usoSemanal: 10, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 15, nome: 'EPP15', usoSemanal: 10, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 16, nome: 'EPP16', usoSemanal: 35, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+            { id: 17, nome: 'RS1', usoSemanal: 50, usoTotal: 0, proxLL: 0, proxLLR: 0 },
+        ];
+
+        $("#tblManutencao thead tr").append('<th scope="col">Equipamento</th>');
+
+        for (let semana = 1; semana <= 53; semana++) {
+            $("#tblManutencao thead tr").append('<th scope="col" style="width: 20px;">' + semana + '</th>');
+        }
+
+        for (let eqp = 0; eqp < arrEquipamentos.length; eqp++) {
+            $("#tblManutencao tbody").append('<tr class="thead-dark" id=eqp' + arrEquipamentos[eqp].id + '> <th scope="col">' + arrEquipamentos[eqp].nome + '</th> </tr>');
+            for (let semana = 1; semana <= 53; semana++) {
+                var add = true;
+                arrEquipamentos[eqp].usoTotal += arrEquipamentos[eqp].usoSemanal;
+                arrEquipamentos[eqp].proxLL += arrEquipamentos[eqp].usoSemanal;
+                arrEquipamentos[eqp].proxLLR += arrEquipamentos[eqp].usoSemanal;
+
+                if (arrEquipamentos[eqp].proxLL >= 250 && arrEquipamentos[eqp].proxLLR >= 500) {
+                    $("#eqp" + arrEquipamentos[eqp].id).append('<td></i><i class="fas fa-oil-can"></i></td>');
+                    arrEquipamentos[eqp].proxLL = 0;
+                    arrEquipamentos[eqp].proxLLR = 0;
+                    add = false;
+                } else {
+                    if (arrEquipamentos[eqp].proxLL >= 250) {
+                        $("#eqp" + arrEquipamentos[eqp].id).append('<td> <i class="fas fa-tint"></i></td>');
+                        arrEquipamentos[eqp].proxLL = 0;
+                        add = false;
+                    } else if (arrEquipamentos[eqp].proxLLR >= 500) {
+                        $("#eqp" + arrEquipamentos[eqp].id).append('<td><i class="fas fa-oil-can"></i></td>');
+                        arrEquipamentos[eqp].proxLLR = 0;
+                        add = false;
+                    }
+                    if (add) {
+                        $("#eqp" + arrEquipamentos[eqp].id).append('<td></td>');
+                    }
+                }
+            }
+        }
+    </script> -->
 </footer>
 
 </html>
